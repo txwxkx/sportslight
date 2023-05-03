@@ -337,8 +337,8 @@ drop sequence matchScheduleSeq;
 
 -- 경기 일정 테이블 게시판 생성
 create table matchSchedule (
-    scheduleNum number constraint matchNum primary key, -- 경기 일정 고유번호
-    leagueName varchar2(100), -- 리그 이름
+    scheduleNum number constraint scheduleNum primary key, -- 경기 일정 고유번호
+    leagueNum number, -- 리그 이름
     matchDate date, -- 경기 날짜
     matchTime varchar2(30), -- 경기 시간
     matchPlace varchar2(100), -- 경기 장소
@@ -359,13 +359,15 @@ nocycle;
 
 -- 임의 데이터 삽입
 INSERT INTO matchSchedule
-VALUES(matchScheduleSeq.nextval, '프리미어리그', '2023-05-06', '23:00', 'Etihad Stadium', '맨시티', 0, 5, '아스널', 'FT');
+VALUES('1', '1', '2023-05-06', '23:00', 'Etihad Stadium', '맨시티', 0, 5, '아스널', 'FT');
 INSERT INTO matchSchedule
-VALUES(matchScheduleSeq.nextval, '프리미어리그', '2023-05-07', '01:30', 'Anfield', '리버풀', 5, 0, '토트넘', 'FT');
+VALUES('2', '1', '2023-05-07', '01:30', 'Anfield', '리버풀', 5, 0, '토트넘', 'FT');
 INSERT INTO matchSchedule
-VALUES(matchScheduleSeq.nextval, '프리미어리그', '2023-05-08', '', '경기가 없습니다.', '', '', '', '', 'NM');
+VALUES('3', '1', '2023-05-08', '', '경기가 없습니다.', '', '', '', '', 'NM');
 
 SELECT * FROM matchSchedule;
+
+commit;
 
 
 -- 승부예측 테이블 생성
@@ -389,7 +391,7 @@ NOCYCLE;
 create table bettingRecord(
 recordNum number not null CONSTRAINT recordNum PRIMARY KEY,
 bettingNum number not null,
-scheNum number not null,
+scheduleNum number not null,
 memberNum number not null,
 teamNum number not null,
 bettingValue varchar2(10) not null
@@ -412,7 +414,7 @@ drop sequence matchResultSeq;
 -- 경기 결과 테이블 게시판 생성
 create table matchResult(
     resultNum number constraint resultNum primary key, -- 결과 고유번호
-    matchNum number, -- 외래키
+    scheduleNum number, -- 외래키
     teamAResult varchar2(20),
     teamBResult varchar2(20),
     teamAPoint number,
