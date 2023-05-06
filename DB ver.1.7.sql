@@ -332,13 +332,15 @@ select * from season;
 ------------------------------------------------------------
 -- 경기 일정 테이블 / 시퀀스 삭제
 drop table matchSchedule;
+
 drop sequence matchScheduleSeq;
 
 
 -- 경기 일정 테이블 게시판 생성
 create table matchSchedule (
     scheduleNum number constraint scheduleNum primary key, -- 경기 일정 고유번호
-    leagueNum number, -- 리그 이름
+    leagueName varchar2(100), -- 리그 이름
+    leagueYM varchar2(30), -- 리그 연월
     matchDate date, -- 경기 날짜
     matchTime varchar2(30), -- 경기 시간
     matchPlace varchar2(100), -- 경기 장소
@@ -359,11 +361,11 @@ nocycle;
 
 -- 임의 데이터 삽입
 INSERT INTO matchSchedule
-VALUES('1', '1', '2023-05-06', '23:00', 'Etihad Stadium', '맨시티', 0, 5, '아스널', 'FT');
+VALUES('1', '프리미어리그', '23년 5월', '2023-05-06', '23:00', 'Etihad Stadium', '맨시티', 0, 5, '아스널', 'FT');
 INSERT INTO matchSchedule
-VALUES('2', '1', '2023-05-07', '01:30', 'Anfield', '리버풀', 5, 0, '토트넘', 'FT');
+VALUES('2', '프리미어리그', '23년 5월', '2023-05-07', '01:30', 'Anfield', '리버풀', 5, 0, '토트넘', 'FT');
 INSERT INTO matchSchedule
-VALUES('3', '1', '2023-05-08', '', '경기가 없습니다.', '', '', '', '', 'NM');
+VALUES('3', '프리미어리그', '23년 5월', '2023-05-08', '', '경기가 없습니다.', '', '', '', '', 'NM');
 
 SELECT * FROM matchSchedule;
 
@@ -430,4 +432,7 @@ nocycle;
 
 -- 경기 결과 데이터 확인
 select * from matchResult;
+
+---------------------------------------------------------------------
+
 
