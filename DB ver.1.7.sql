@@ -435,4 +435,15 @@ select * from matchResult;
 
 ---------------------------------------------------------------------
 
+SELECT *
+		FROM matchSchedule
+		WHERE leagueName = '프리미어리그'
+        and leagueYM = (SELECT max (leagueYM)
+                        FROM matchSchedule
+                        WHERE leagueName = '프리미어리그')
+        ORDER BY scheduleNum ASC;
 
+SELECT min (leagueYM)
+		FROM matchSchedule
+		WHERE leagueName = '프리미어리그'
+		ORDER BY leagueYM ASC;
