@@ -67,6 +67,18 @@ start WITH 1
 nocache
 nocycle;
 
+-- 임의 데이터 삽입
+INSERT INTO memberz
+VALUES('1', 'ktw@gmail.com', 'ktw1234', '태우버거', '2023-03-15', '1', '1');
+INSERT INTO memberz
+VALUES('2', 'sjc@naver.com', 'sjc1234', '설조장', '2023-04-01', '1', '1');
+INSERT INTO memberz
+VALUES('3', 'ksj@daum.net', 'ksj1234', '리차드킴', '2023-04-19', '1', '1');
+
+select * from memberz;
+
+commit;
+
 -----------------------------------------------------------------
 -- 회원선호 테이블 생성
 create table memberFavor
@@ -87,17 +99,9 @@ START WITH 1
 NOCACHE
 NOCYCLE;
 
--- 임의 데이터 삽입
-INSERT INTO memberz
-VALUES('1', 'ktw@gmail.com', 'ktw1234', '태우버거', '2023-03-15', '1', '1');
-INSERT INTO memberz
-VALUES('2', 'sjc@naver.com', 'sjc1234', '설조장', '2023-04-01', '1', '1');
-INSERT INTO memberz
-VALUES('3', 'ksj@daum.net', 'ksj1234', '리차드킴', '2023-04-19', '1', '1');
+select * from memberFavor;
 
 commit;
-
-select * from memberz;
 
 -----------------------------------------------------------------
 -- 관리자 정보 테이블 생성
@@ -115,6 +119,10 @@ START WITH 1
 NOCACHE
 NOCYCLE;
 
+select * from adminz;
+
+commit;
+
 -----------------------------------------------------------------
 -- 공지사항 테이블 생성
 create table notice(
@@ -131,6 +139,10 @@ INCREMENT BY 1
 START WITH 1
 NOCACHE
 NOCYCLE;
+
+select * from notice;
+
+commit;
 
 ------------------------------------------------------------
 -- 동영상 테이블 생성
@@ -154,6 +166,10 @@ increment by 1
 nocache
 nocycle;
 
+select * from video;
+
+commit;
+
 ------------------------------------------------------------
 -- 동영상 한 줄 게시판 생성
 create table videoBoard (
@@ -174,7 +190,16 @@ increment by 1
 nocache
 nocycle;
 
+select * from videoBoard;
+
+commit;
+
 -----------------------------------------------------------------
+
+drop table footballTalk;
+
+drop SEQUENCE footballTalkSEQ;
+
 -- 축구토크 게시판 테이블 생성
 create table footballTalk(
 talkNum number not null CONSTRAINT talkNum PRIMARY KEY,
@@ -195,24 +220,40 @@ NOCACHE
 NOCYCLE;
 
 -- 임의 데이터 삽입
-INSERT INTO footballTalk
-VALUES('1', '1', '1', '프리미어리그 언제 마감함?', '아스날 경기 언제임?', '', '2023-05-01', '6');
-INSERT INTO footballTalk
-VALUES('2', '1', '1', '요즘 아스날 폼 쩔지 않냐', '이러다 우승각인데', '아스날 최근 전적.png', '2023-05-02', '7');
-INSERT INTO footballTalk
-VALUES('3', '2', '1', '어차피 맨시티가 우승함 ㅂㅂ', '반박 시 너 대머리', '맨시티 우승 전적.png', '2023-05-02', '4');
-INSERT INTO footballTalk
-VALUES('4', '1', '2', '이강인 아스날 와라', '리틀 외데고르', '이강인 22-23시즌 활약상.avi', '2023-05-03', '8');
-INSERT INTO footballTalk
-VALUES('5', '2', '3', '김민재 개잘한당', '어디 갈라나?', '김민재 경기 평점.png', '2023-05-04', '1');
-INSERT INTO footballTalk
-VALUES('6', '3', '2', '[오피셜]메시 바르셀로나 복귀', '구라임', '', '2023-05-05', '10');
-
-commit;
+INSERT INTO footballTalk VALUES(footballTalkSEQ.nextval, '1', '1', '아스날 우승 기원', 'ㅈㄱㄴ', '', '2023-04-22', '1');
+INSERT INTO footballTalk VALUES(footballTalkSEQ.nextval, '2', '2', '이강인 폼 미쳤다', 'ㅈㄱㄴ', '', '2023-04-23', '2');
+INSERT INTO footballTalk VALUES(footballTalkSEQ.nextval, '3', '3', '뮌헨 왜 이러나요??', 'ㅈㄱㄴ', '', '2023-04-24', '25');
+INSERT INTO footballTalk VALUES(footballTalkSEQ.nextval, '1', '4', '김민재 어디 가려나요??', 'ㅈㄱㄴ', '', '2023-04-25', '24');
+INSERT INTO footballTalk VALUES(footballTalkSEQ.nextval, '2', '5', '음바페 닌자 거북이 닮음', 'ㅈㄱㄴ', '', '2023-04-26', '23');
+INSERT INTO footballTalk VALUES(footballTalkSEQ.nextval, '3', '6', '[오피셜]챔스 4강 대진 확정', 'ㅈㄱㄴ', '', '2023-04-27', '22');
+INSERT INTO footballTalk VALUES(footballTalkSEQ.nextval, '1', '7', '유로파 우승 누가 할꺼 같음??', 'ㅈㄱㄴ', '', '2023-04-28', '21');
+INSERT INTO footballTalk VALUES(footballTalkSEQ.nextval, '2', '8', '기성용 진짜 잘하네', 'ㅈㄱㄴ', '', '2023-04-29', '20');
+INSERT INTO footballTalk VALUES(footballTalkSEQ.nextval, '3', '9', '평택 승격 가즈아', 'ㅈㄱㄴ', '', '2023-04-30', '19');
+INSERT INTO footballTalk VALUES(footballTalkSEQ.nextval, '1', '1', '아스날 우승 기원', 'ㅈㄱㄴ', '', '2023-05-01', '18');
+INSERT INTO footballTalk VALUES(footballTalkSEQ.nextval, '2', '2', '이강인 폼 미쳤다', 'ㅈㄱㄴ', '', '2023-05-02', '17');
+INSERT INTO footballTalk VALUES(footballTalkSEQ.nextval, '3', '3', '뮌헨 왜 이러나요??', 'ㅈㄱㄴ', '', '2023-05-03', '16');
+INSERT INTO footballTalk VALUES(footballTalkSEQ.nextval, '1', '4', '김민재 어디 가려나요??', 'ㅈㄱㄴ', '', '2023-05-04', '15');
+INSERT INTO footballTalk VALUES(footballTalkSEQ.nextval, '2', '5', '음바페 닌자 거북이 닮음', 'ㅈㄱㄴ', '', '2023-05-05', '14');
+INSERT INTO footballTalk VALUES(footballTalkSEQ.nextval, '3', '6', '[오피셜]챔스 4강 대진 확정', 'ㅈㄱㄴ', '', '2023-05-06', '13');
+INSERT INTO footballTalk VALUES(footballTalkSEQ.nextval, '1', '7', '유로파 우승 누가 할꺼 같음??', 'ㅈㄱㄴ', '', '2023-05-07', '12');
+INSERT INTO footballTalk VALUES(footballTalkSEQ.nextval, '2', '8', '기성용 진짜 잘하네', 'ㅈㄱㄴ', '', '2023-05-08', '11');
+INSERT INTO footballTalk VALUES(footballTalkSEQ.nextval, '3', '9', '평택 승격 가즈아', 'ㅈㄱㄴ', '', '2023-05-09', '10');
+INSERT INTO footballTalk VALUES(footballTalkSEQ.nextval, '1', '1', '아스날 우승 기원', 'ㅈㄱㄴ', '', '2023-05-10', '9');
+INSERT INTO footballTalk VALUES(footballTalkSEQ.nextval, '2', '2', '이강인 폼 미쳤다', 'ㅈㄱㄴ', '', '2023-05-11', '8');
+INSERT INTO footballTalk VALUES(footballTalkSEQ.nextval, '3', '3', '뮌헨 왜 이러나요??', 'ㅈㄱㄴ', '', '2023-05-12', '7');
+INSERT INTO footballTalk VALUES(footballTalkSEQ.nextval, '1', '4', '김민재 어디 가려나요??', 'ㅈㄱㄴ', '', '2023-05-13', '6');
+INSERT INTO footballTalk VALUES(footballTalkSEQ.nextval, '2', '5', '음바페 닌자 거북이 닮음', 'ㅈㄱㄴ', '', '2023-05-14', '5');
 
 SELECT * FROM footballTalk;
 
+commit;
+
 -----------------------------------------------------------------
+
+drop table footballTalkReply;
+
+drop SEQUENCE footballTalkReplySEQ;
+
 -- 축구토크 댓글 게시판 테이블 생성
 create table footballTalkReply(
 talkReplyNum number not null CONSTRAINT talkReplyNum PRIMARY KEY,
@@ -233,6 +274,16 @@ START WITH 1
 NOCACHE
 NOCYCLE;
 
+INSERT INTO footballTalkReply VALUES(footballTalkReplySEQ.nextval, '1', '1', '아스날 우승 기원 1일차', '2023-05-13');
+INSERT INTO footballTalkReply VALUES(footballTalkReplySEQ.nextval, '1', '2', '어차피 맨시티가 우승함 ㅅㄱ', '2023-05-14');
+INSERT INTO footballTalkReply VALUES(footballTalkReplySEQ.nextval, '1', '1', '아스날 내년 우승 기원 1일차', '2023-05-15');
+INSERT INTO footballTalkReply VALUES(footballTalkReplySEQ.nextval, '1', '3', '맨유도 껴줘..', '2023-05-16');
+INSERT INTO footballTalkReply VALUES(footballTalkReplySEQ.nextval, '1', '1', 'ㅠㅠ', sysdate);
+
+select * from footballTalkReply;
+
+commit;
+
 -----------------------------------------------------------------
 -- 좋아요 게시판 생성
 create table heart (
@@ -251,6 +302,10 @@ start with 1
 increment by 1
 nocache
 nocycle;
+
+select * from heart;
+
+commit;
 
 ------------------------------------------------------------
 -- 즐겨찾기 테이블 생성
@@ -271,6 +326,10 @@ increment by 1
 nocache
 nocycle;
 
+select * from favorite;
+
+commit;
+
 ------------------------------------------------------------
 -- 대회 테이블 게시판 생성
 create table league (
@@ -284,6 +343,10 @@ start with 10
 increment by 1
 nocache
 nocycle;
+
+select * from league;
+
+commit;
 
 ------------------------------------------------------------
 -- 시즌 테이블 게시판 생성
@@ -299,6 +362,10 @@ increment by 1
 nocache
 nocycle;
 
+select * from season;
+
+commit;
+
 ------------------------------------------------------------
 -- 팀 테이블 게시판 생성
 create table team (
@@ -312,6 +379,10 @@ start with 160
 increment by 1
 nocache
 nocycle;
+
+select * from team;
+
+commit;
 
 ------------------------------------------------------------
 -- 경기 일정 테이블 게시판 생성
@@ -336,6 +407,9 @@ increment by 1
 nocache
 nocycle;
 
+select * from matchSchedule;
+
+commit;
 
 -----------------------------------------------------------
 -------------------------------------------------------------
@@ -425,4 +499,16 @@ SELECT b.*, l.leagueName, m.memberProfile
 		   			  WHERE f.memberNum = m.memberNum(+)
 		   			  ORDER BY talkNum DESC)a)b;
 
-SELECT f,  
+SELECT f.*, l.leagueName, m.memberProfile
+FROM footballtalk f
+JOIN league l ON f.leagueNum = l.leagueNum
+JOIN memberz m ON f.memberNum = m.memberNum;
+
+SELECT b.*
+FROM(SELECT ROWNUM AS rn, a.*
+     FROM(SELECT f.*, l.leagueName, m.memberProfile
+          FROM footballtalk f
+          JOIN league l ON f.leagueNum = l.leagueNum
+          JOIN memberz m ON f.memberNum = m.memberNum
+          ORDER BY talkNum DESC)a)b
+WHERE b.rn >= #{startRow} AND b.rn <= #{endRow};
